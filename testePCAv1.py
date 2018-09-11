@@ -12,3 +12,4 @@ df.columns=['Idade', 'Emprego', 'Peso final', 'Educação', 'Anos de Estudo', 'E
 df.dropna(how="all", inplace=True) # drops the empty line at file-end
 
 print(df)
+
