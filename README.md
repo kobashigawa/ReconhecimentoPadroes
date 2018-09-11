@@ -1,4 +1,4 @@
-# EACH USP | Reconhecimento de Padrões - PCA
-Reconhecimento de Padrões Ariane
+# Reconhecimento de Padrões - PCA
 
-PCA de dataset Adult
+
+PCA de dataset UCI Adult
