@@ -20,14 +20,20 @@ df2=df.drop(columns=['Emprego', 'Educação', 'Estado Civil', 'Ocupação', 'Rel
 atributos=df2[['Idade', 'Peso final', 'Anos de Estudo', 'Ganhos de Capital', 'Perdas de Capital', 'Horas de trabalho por semana']]
 classe=df2[['classe']]
 
-x_std = StandardScaler().fit_transform(atributos)
+#Normalizacao e covariancia
+#x_std = StandardScaler().fit_transform(atributos)
+#
+## features are columns from x_std
+#features = x_std.T 
+#covariance_matrix = np.cov(features)
+#print(covariance_matrix)
+#eig_vals, eig_vecs = np.linalg.eig(covariance_matrix)
 
-# features are columns from x_std
-features = x_std.T 
-covariance_matrix = np.cov(features)
-print(covariance_matrix)
+#Correlacao
+correlacao_matrix = np.corrcoef(atributos.T)
+print(correlacao_matrix)
 
-eig_vals, eig_vecs = np.linalg.eig(covariance_matrix)
+eig_vals, eig_vecs = np.linalg.eig(correlacao_matrix)
 print('Eigenvectors \n%s' %eig_vecs)
 
 print('\nEigenvalues \n%s' %eig_vals)
@@ -44,10 +50,10 @@ print (var_exp)
 
 with plt.style.context('seaborn-whitegrid'):
     plt.figure(figsize=(6, 6))
-    plt.bar(range(6), var_exp, alpha=0.5, align='center',label='individual explained variance')
-    plt.step(range(6), cum_var_exp, where='mid',label='cumulative explained variance')
-    plt.ylabel('Explained variance ratio')
-    plt.xlabel('Principal components')
+    plt.bar(range(6), var_exp, alpha=0.5, align='center',label='Variancia individual')
+    plt.step(range(6), cum_var_exp, where='mid',label='Variancia cumulativa')
+    plt.ylabel('Taxa de variancia')
+    plt.xlabel('Componentes principais')
     plt.legend(loc='best')
     plt.tight_layout()
 plt.show()
