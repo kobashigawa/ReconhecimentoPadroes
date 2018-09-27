@@ -5,7 +5,7 @@ from sklearn.feature_selection import SelectKBest
 from sklearn.feature_selection import f_classif
 
 df = pd.read_csv(
-	filepath_or_buffer='C:/Users/Luiz/teste/adult.csv',
+	filepath_or_buffer='adult.data',
 	header=None,
 	sep=',')
 
@@ -21,7 +21,7 @@ classe=df2[['classe']]
 X, y = atributos.values, classe.values
 ##print(X.shape)
 
-selector = SelectKBest(f_classif, k=4)
+selector = SelectKBest(f_classif, k=2)
 X_new = selector.fit_transform(X, y)
 
 #print(X_new.shape)
@@ -29,4 +29,6 @@ X_new = selector.fit_transform(X, y)
 mask = selector.get_support()
 new_features = atributos.columns[mask]
 
+print(df2.columns)
 print(new_features)
+print(selector.scores_) 
