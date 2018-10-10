@@ -7,7 +7,7 @@ from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import train_test_split
 
 dataset = pd.read_csv(
-    filepath_or_buffer='adultinho.data',
+    filepath_or_buffer='adult.data',
     header=None, 
     sep=',')
 	
