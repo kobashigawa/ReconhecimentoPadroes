@@ -50,21 +50,21 @@ cvn5.get_n_splits(features, labels_somente_numericos)
 ##############################################################################
 models = []
 # KERNEL LINEAR
-#models.append(('LinearSVC_C0.1', SVC(kernel='linear', C=0.1)))
-#models.append(('LinearSVC_C0.5', SVC(kernel='linear', C=0.5)))
-#models.append(('LinearSVC_C10', SVC(kernel='linear', C=10)))
+models.append(('LinearSVC_C0.1', SVC(kernel='linear', C=0.1, gamma=0.1)))
+models.append(('LinearSVC_C0.5', SVC(kernel='linear', C=0.5, gamma=0.1)))
+models.append(('LinearSVC_C10', SVC(kernel='linear', C=10, gamma=0.1)))
 # KERNEL RBF - Gaussian
-#models.append(('RbfSVC_C0.1', SVC(kernel='rbf', C=0.1)))
-#models.append(('RbfSVC_C0.5', SVC(kernel='rbf', C=0.5)))
-#models.append(('RbfSVC_C10', SVC(kernel='rbf', C=10)))
+models.append(('RbfSVC_C0.1', SVC(kernel='rbf', C=0.1, gamma=0.1)))
+models.append(('RbfSVC_C0.5', SVC(kernel='rbf', C=0.5, gamma=0.1)))
+models.append(('RbfSVC_C10', SVC(kernel='rbf', C=10, gamma=0.1)))
 # KERNEL SIGMOID 
-#models.append(('SigmoidSVC_C0.1', SVC(kernel='sigmoid', C=0.1)))
-#models.append(('SigmoidSV_C0.5', SVC(kernel='sigmoid', C=0.5)))
-#models.append(('SigmoidSV_C10', SVC(kernel='sigmoid', C=10)))
+models.append(('SigmoidSVC_C0.1', SVC(kernel='sigmoid', C=0.1, gamma=0.1)))
+models.append(('SigmoidSV_C0.5', SVC(kernel='sigmoid', C=0.5, gamma=0.1)))
+models.append(('SigmoidSV_C10', SVC(kernel='sigmoid', C=10, gamma=0.1)))
 # KERNEL POLYNOMIAL
-#models.append(('PolynomialSVC_C0.1', SVC(kernel='poly', C=0.1)))
-#models.append(('PolynomialSV_C0.5', SVC(kernel='poly', C=0.5)))
-#models.append(('PolynomialSV_C10', SVC(kernel='poly', C=10)))
+models.append(('PolynomialSVC_C0.1', SVC(kernel='poly', C=0.1)))
+models.append(('PolynomialSV_C0.5', SVC(kernel='poly', C=0.5)))
+models.append(('PolynomialSV_C10', SVC(kernel='poly', C=10)))
 
 # Parametros do scoring http://scikit-learn.org/stable/modules/model_evaluation.html#scoring-parameter
 print("Realizando o cross validation do SVM")
