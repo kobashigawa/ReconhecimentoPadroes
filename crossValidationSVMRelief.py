@@ -30,6 +30,8 @@ labels=somente_numericos[['classe']].values
 # Ha 3 formas descritas no link
 labels_somente_numericos = [1 if i == ' <=50K' else 0 for i in labels]
 
+print("Finalizando setup")
+
 # Cross validation n splits = 3
 cvn3 = StratifiedKFold(n_splits=3, shuffle=True)
 cvn3.get_n_splits(features, labels_somente_numericos)
@@ -37,6 +39,8 @@ cvn3.get_n_splits(features, labels_somente_numericos)
 # Cross validation n splits = 5
 cvn5 = StratifiedKFold(n_splits=5, shuffle=True)
 cvn5.get_n_splits(features, labels_somente_numericos)
+
+print("Montando o cross validation")
 
 ##############################################################################
 # Kernel http://scikit-learn.org/stable/modules/svm.html#svm-kernels
