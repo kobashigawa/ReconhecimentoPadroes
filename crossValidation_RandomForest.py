@@ -16,8 +16,9 @@ dataset = pd.read_csv(
 
 dataset.columns=['Idade', 'Emprego', 'Peso final', 'Educação', 'Anos de Estudo', 'Estado Civil', 'Ocupação', 'Relacionamento', 'Raça', 'Sexo', 'Ganhos de Capital', 'Perdas de Capital', 'Horas de trabalho por semana', 'País de Nascimento', 'classe']
 
-dataset.dropna(how="all", inplace=True) # drops the empty line at file-end
+#features_full = dataset.dropna(how="all", inplace=True) # drops the empty line at file-end
 
+dataset.dropna(how="all", inplace=True) # drops the empty line at file-end
 somente_numericos=dataset.drop(columns=['Emprego', 'Educação', 'Estado Civil', 'Ocupação', 'Relacionamento', 'Raça', 'Sexo', 'País de Nascimento'])
 somente_numericos = somente_numericos.sort_values(by=['classe'])
 
@@ -39,6 +40,7 @@ features_full=somente_numericos[['Idade', 'Peso final', 'Anos de Estudo', 'Ganho
 #SelectKBest - 'Anos de Estudo', 'Idade', 'Horas de trabalho por semana', 'Ganhos de Capital', 'Perdas de Capital', 'Peso final'
 #features_full=somente_numericos[['Anos de Estudo', 'Idade', 'Horas de trabalho por semana', 'Ganhos de Capital']]
 
+#features = features_full.values
 features=np.array(features_full.values, dtype=np.float64)
 #features=np.array(dataset.values, dtype=np.float64)
 
@@ -62,21 +64,34 @@ models = []
 
 # https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
 
-models.append(('RndForest mtry=3 e ntree=500', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
-models.append(('RndForest mtry=3 e ntree=1000', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
-models.append(('RndForest mtry=3 e ntree=1500', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
+#https://github.com/scikit-learn/scikit-learn/issues/6086
+#Number of trees (“ntree” in R and “n_estimators” in Python).
+#Number of variables randomly sampled as candidates at each split: it is “mtry” in R and it is “max_features” Python. 
 
-models.append(('RndForest mtry=4 e ntree=500', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
-models.append(('RndForest mtry=4 e ntree=1000', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
-models.append(('RndForest mtry=4 e ntree=1500', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
+models.append(('RndForest mtry = 3 e ntree = 500', RandomForestClassifier(max_features=3, n_estimators=500)))
+models.append(('RndForest mtry = 3 e ntree = 1000', RandomForestClassifier(max_features=3, n_estimators=1000)))
+models.append(('RndForest mtry = 3 e ntree = 1500', RandomForestClassifier(max_features=3, n_estimators=1500)))
+#models.append(('RndForest mtry=3 e ntree=500', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
+#models.append(('RndForest mtry=3 e ntree=1000', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
+#models.append(('RndForest mtry=3 e ntree=1500', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
 
-models.append(('RndForest mtry=5 e ntree=500', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
-models.append(('RndForest mtry=5 e ntree=1000', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
-models.append(('RndForest mtry=5 e ntree=1500', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
+models.append(('RndForest mtry = 4 e ntree = 500', RandomForestClassifier(max_features=4, n_estimators=500)))
+models.append(('RndForest mtry = 4 e ntree = 1000', RandomForestClassifier(max_features=4, n_estimators=1000)))
+models.append(('RndForest mtry = 4 e ntree = 1500', RandomForestClassifier(max_features=4, n_estimators=1500)))
+#models.append(('RndForest mtry=4 e ntree=500', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
+#models.append(('RndForest mtry=4 e ntree=1000', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
+#models.append(('RndForest mtry=4 e ntree=1500', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
+
+models.append(('RndForest mtry = 5 e ntree = 500', RandomForestClassifier(max_features=5, n_estimators=500)))
+models.append(('RndForest mtry = 5 e ntree = 1000', RandomForestClassifier(max_features=5, n_estimators=1000)))
+models.append(('RndForest mtry = 5 e ntree = 1500', RandomForestClassifier(max_features=5, n_estimators=1500)))
+#models.append(('RndForest mtry=5 e ntree=500', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
+#models.append(('RndForest mtry=5 e ntree=1000', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
+#models.append(('RndForest mtry=5 e ntree=1500', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
 
 
 # Parametros do scoring http://scikit-learn.org/stable/modules/model_evaluation.html#scoring-parameter
-print("Iniciando cross validation MLP")
+print("Iniciando cross validation Random forest")
 
 
 for name, model in models:
