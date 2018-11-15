@@ -25,7 +25,7 @@ somente_numericos = somente_numericos.sort_values(by=['classe'])
 
 #Requerido: package numba - pip install numba --user
 #Kobashi: Apenas os do PCA = sem Idade e Peso final
-<<<<<<< HEAD
+
 #features_full=somente_numericos[['Anos de Estudo', 'Ganhos de Capital', 'Perdas de Capital', 'Horas de trabalho por semana']]
 
 #Kobashi: Relief - sem peso final
@@ -33,13 +33,6 @@ features_full=somente_numericos[['Idade', 'Anos de Estudo', 'Ganhos de Capital',
 
 #Kobashi: k best - sem perdas de capital 
 features_full=somente_numericos[['Idade', 'Anos de Estudo', 'Ganhos de Capital', 'Horas de trabalho por semana']]
-=======
-features_full=somente_numericos[['Anos de Estudo', 'Ganhos de Capital', 'Perdas de Capital', 'Horas de trabalho por semana']]
-#Relief - 'Idade', 'Anos de Estudo', 'Horas de trabalho por semana', 'Ganhos de Capital', 'Peso final', 'Perdas de Capital'
-#features_full=somente_numericos[['Idade', 'Anos de Estudo', 'Horas de trabalho por semana', 'Ganhos de Capital']]
-#SelectKBest - 'Anos de Estudo', 'Idade', 'Horas de trabalho por semana', 'Ganhos de Capital', 'Perdas de Capital', 'Peso final'
-#features_full=somente_numericos[['Anos de Estudo', 'Idade', 'Horas de trabalho por semana', 'Ganhos de Capital']]
->>>>>>> df03d07f6812c3b38addfbf01aba37010f611438
 
 features=np.array(features_full.values, dtype=np.float64)
 
