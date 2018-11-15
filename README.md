@@ -1,4 +1,4 @@
-# Reconhecimento de Padrões - PCA
+# Reconhecimento de Padrões
 
 
-PCA de dataset UCI Adult
+Dataset UCI Adult
