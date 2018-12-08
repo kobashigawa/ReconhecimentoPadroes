@@ -10,7 +10,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 
 dataset = pd.read_csv(
-    filepath_or_buffer='adultinho.data',
+    filepath_or_buffer='adult.data',
     header=None, 
     sep=',')
 
@@ -19,10 +19,37 @@ dataset.columns=['Idade', 'Emprego', 'Peso final', 'Educação', 'Anos de Estudo
 #features_full = dataset.dropna(how="all", inplace=True) # drops the empty line at file-end
 
 dataset.dropna(how="all", inplace=True) # drops the empty line at file-end
-somente_numericos=dataset.drop(columns=['Emprego', 'Educação', 'Estado Civil', 'Ocupação', 'Relacionamento', 'Raça', 'Sexo', 'País de Nascimento'])
-somente_numericos = somente_numericos.sort_values(by=['classe'])
 
-features_full=somente_numericos[['Idade', 'Peso final', 'Anos de Estudo', 'Ganhos de Capital', 'Perdas de Capital', 'Horas de trabalho por semana']]
+print("Ajuste do dataset")
+dataset['Emprego'] = dataset['Emprego'].astype('category')
+dataset['Emprego'] = dataset['Emprego'].cat.codes
+
+dataset['Educação'] = dataset['Educação'].astype('category')
+dataset['Educação'] = dataset['Educação'].cat.codes
+
+dataset['Estado Civil'] = dataset['Estado Civil'].astype('category')
+dataset['Estado Civil'] = dataset['Estado Civil'].cat.codes
+
+dataset['Ocupação'] = dataset['Ocupação'].astype('category')
+dataset['Ocupação'] = dataset['Ocupação'].cat.codes
+
+dataset['Relacionamento'] = dataset['Relacionamento'].astype('category')
+dataset['Relacionamento'] = dataset['Relacionamento'].cat.codes
+
+dataset['Raça'] = dataset['Raça'].astype('category')
+dataset['Raça'] = dataset['Raça'].cat.codes
+
+dataset['Sexo'] = dataset['Sexo'].astype('category')
+dataset['Sexo'] = dataset['Sexo'].cat.codes
+
+dataset['País de Nascimento'] = dataset['País de Nascimento'].astype('category')
+dataset['País de Nascimento'] = dataset['País de Nascimento'].cat.codes
+
+
+#somente_numericos=dataset.drop(columns=['Emprego', 'Educação', 'Estado Civil', 'Ocupação', 'Relacionamento', 'Raça', 'Sexo', 'País de Nascimento'])
+#somente_numericos = somente_numericos.sort_values(by=['classe'])
+
+#features_full=somente_numericos[['Idade', 'Peso final', 'Anos de Estudo', 'Ganhos de Capital', 'Perdas de Capital', 'Horas de trabalho por semana']]
 
 #Requerido: package numba - pip install numba --user
 #Kobashi: Apenas os do PCA = sem Idade e Peso final
@@ -40,17 +67,24 @@ features_full=somente_numericos[['Idade', 'Peso final', 'Anos de Estudo', 'Ganho
 #SelectKBest - 'Anos de Estudo', 'Idade', 'Horas de trabalho por semana', 'Ganhos de Capital', 'Perdas de Capital', 'Peso final'
 #features_full=somente_numericos[['Anos de Estudo', 'Idade', 'Horas de trabalho por semana', 'Ganhos de Capital']]
 
+print("Formatacao do label")
+#labels=somente_numericos[['classe']].values
+labels=dataset[['classe']].values
+
+print("Load dos valores")
+dataset=dataset.drop(columns=['classe'])
 #features = features_full.values
-features=np.array(features_full.values, dtype=np.float64)
+#features=np.array(features_full.values, dtype=np.float64)
+features=np.array(dataset.values)
 #features=np.array(dataset.values, dtype=np.float64)
 
-labels=somente_numericos[['classe']].values
 
 # Necessario usar 0 e 1 para recall e precision
 # https://stackoverflow.com/questions/39187875/scikit-learn-script-giving-vastly-different-results-than-the-tutorial-and-gives
 # Ha 3 formas descritas no link
 labels_somente_numericos = [1 if i == ' <=50K' else 0 for i in labels]
 
+print(labels_somente_numericos)
 # Cross validation n splits = 3
 cvn3 = StratifiedKFold(n_splits=3, shuffle=True)
 cvn3.get_n_splits(features, labels_somente_numericos)
