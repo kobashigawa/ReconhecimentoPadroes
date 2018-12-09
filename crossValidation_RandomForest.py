@@ -102,27 +102,31 @@ models = []
 #Number of trees (“ntree” in R and “n_estimators” in Python).
 #Number of variables randomly sampled as candidates at each split: it is “mtry” in R and it is “max_features” Python. 
 
-models.append(('RndForest mtry = 3 e ntree = 500', RandomForestClassifier(max_features=3, n_estimators=500)))
-models.append(('RndForest mtry = 3 e ntree = 1000', RandomForestClassifier(max_features=3, n_estimators=1000)))
-models.append(('RndForest mtry = 3 e ntree = 1500', RandomForestClassifier(max_features=3, n_estimators=1500)))
-#models.append(('RndForest mtry=3 e ntree=500', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
-#models.append(('RndForest mtry=3 e ntree=1000', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
-#models.append(('RndForest mtry=3 e ntree=1500', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
+#V1
+#models.append(('RndForest mtry = 3 e ntree = 500', RandomForestClassifier(max_features=3, n_estimators=500)))
+#models.append(('RndForest mtry = 3 e ntree = 1000', RandomForestClassifier(max_features=3, n_estimators=1000)))
+#models.append(('RndForest mtry = 3 e ntree = 1500', RandomForestClassifier(max_features=3, n_estimators=1500)))
 
-models.append(('RndForest mtry = 4 e ntree = 500', RandomForestClassifier(max_features=4, n_estimators=500)))
-models.append(('RndForest mtry = 4 e ntree = 1000', RandomForestClassifier(max_features=4, n_estimators=1000)))
-models.append(('RndForest mtry = 4 e ntree = 1500', RandomForestClassifier(max_features=4, n_estimators=1500)))
-#models.append(('RndForest mtry=4 e ntree=500', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
-#models.append(('RndForest mtry=4 e ntree=1000', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
-#models.append(('RndForest mtry=4 e ntree=1500', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
+#models.append(('RndForest mtry = 4 e ntree = 500', RandomForestClassifier(max_features=4, n_estimators=500)))
+#models.append(('RndForest mtry = 4 e ntree = 1000', RandomForestClassifier(max_features=4, n_estimators=1000)))
+#models.append(('RndForest mtry = 4 e ntree = 1500', RandomForestClassifier(max_features=4, n_estimators=1500)))
 
-models.append(('RndForest mtry = 5 e ntree = 500', RandomForestClassifier(max_features=5, n_estimators=500)))
+#models.append(('RndForest mtry = 5 e ntree = 500', RandomForestClassifier(max_features=5, n_estimators=500)))
+#models.append(('RndForest mtry = 5 e ntree = 1000', RandomForestClassifier(max_features=5, n_estimators=1000)))
+#models.append(('RndForest mtry = 5 e ntree = 1500', RandomForestClassifier(max_features=5, n_estimators=1500)))
+
+#V2
+models.append(('RndForest mtry = 2 e ntree = 10', RandomForestClassifier(max_features=2, n_estimators=10)))
+models.append(('RndForest mtry = 2 e ntree = 1000', RandomForestClassifier(max_features=2, n_estimators=1000)))
+models.append(('RndForest mtry = 2 e ntree = 10000', RandomForestClassifier(max_features=2, n_estimators=10000)))
+
+models.append(('RndForest mtry = 5 e ntree = 10', RandomForestClassifier(max_features=5, n_estimators=10)))
 models.append(('RndForest mtry = 5 e ntree = 1000', RandomForestClassifier(max_features=5, n_estimators=1000)))
-models.append(('RndForest mtry = 5 e ntree = 1500', RandomForestClassifier(max_features=5, n_estimators=1500)))
-#models.append(('RndForest mtry=5 e ntree=500', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
-#models.append(('RndForest mtry=5 e ntree=1000', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
-#models.append(('RndForest mtry=5 e ntree=1500', RandomForestClassifier(min_samples_split=4, n_estimators=500)))
+models.append(('RndForest mtry = 5 e ntree = 10000', RandomForestClassifier(max_features=5, n_estimators=10000)))
 
+models.append(('RndForest mtry = 10 e ntree = 10', RandomForestClassifier(max_features=10, n_estimators=10)))
+models.append(('RndForest mtry = 10 e ntree = 1000', RandomForestClassifier(max_features=10, n_estimators=1000)))
+models.append(('RndForest mtry = 10 e ntree = 10000', RandomForestClassifier(max_features=10, n_estimators=10000)))
 
 # Parametros do scoring http://scikit-learn.org/stable/modules/model_evaluation.html#scoring-parameter
 print("Iniciando cross validation Random forest")
